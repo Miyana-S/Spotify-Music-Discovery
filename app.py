@@ -87,6 +87,7 @@ if avg_valence > 0.6:
     st.write("😊 Songs here generally have a positive and happy mood.")
 if avg_danceability > 0.65:
     st.write("💃 Songs here are very danceable.")
+st.write("🎵 This listening pattern represents versatile songs that fit multiple moods and listening situations.")
 
 
 
