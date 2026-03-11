@@ -62,7 +62,7 @@ st.write(top_genres)
 # --- Average Audio Features as Listening Pattern ---
 st.write("### Typical Listening Pattern of This Cluster:")
 pattern_df = cluster_info[['danceability','energy','valence','loudness','tempo']].mean().reset_index()
-pattern_df.columns = ["Audio Feature","Typical Value"]
+pattern_df.columns = ["Audio Feature","Average Value"]
 pattern_df.index = [
     "How suitable for dancing",
     "Intensity level",
@@ -87,6 +87,7 @@ if avg_valence > 0.6:
     st.write("😊 Songs here generally have a positive and happy mood.")
 if avg_danceability > 0.65:
     st.write("💃 Songs here are very danceable.")
+
 
 
 
