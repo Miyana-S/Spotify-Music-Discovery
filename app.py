@@ -61,10 +61,28 @@ st.write(top_genres)
 
 # --- Average Audio Features as Listening Pattern ---
 st.write("### Typical Listening Pattern of This Cluster:")
-st.write(cluster_info[['danceability', 'energy', 'valence', 'loudness']].mean())
+pattern_df = cluster_info[['danceability','energy','valence','loudness','tempo']].mean().to_frame(name="Average Value")
+pattern_df.index = [
+    "Danceability (How suitable for dancing)",
+    "Energy (Intensity level)",
+    "Valence (Positivity/Mood)",
+    "Loudness (Volume level)",
+    "Tempo (Speed BPM)"
+]
+st.dataframe(pattern_df)
 
 # --- Playlist suggestions ---
 st.write("### 🎧 Playlist Suggestions from This Cluster:")
 top_songs = cluster_info.sort_values('popularity', ascending=False).head(5)
 for idx, row in top_songs.iterrows():
+
     st.write(f"**{row['track_name']}** by *{row['artist_name']}*")
+
+st.write("### Listening Pattern Insight")
+
+if avg_energy > 0.65:
+    st.write("⚡ Songs here are typically high-energy and suitable for workouts or parties.")
+if avg_valence > 0.6:
+    st.write("😊 Songs here generally have a positive and happy mood.")
+if avg_danceability > 0.65:
+    st.write("💃 Songs here are very danceable.")
